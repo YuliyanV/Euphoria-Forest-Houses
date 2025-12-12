@@ -1,9 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Year
     const year = document.getElementById("year");
     if (year) year.textContent = new Date().getFullYear();
 
-    // Mobile nav
     const burger = document.getElementById("burger");
     const nav = document.getElementById("nav");
     if (burger && nav) {
@@ -17,7 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }));
     }
 
-    // Tabs
     const tabs = Array.from(document.querySelectorAll(".tab"));
     const panels = Array.from(document.querySelectorAll(".panel"));
 
@@ -32,16 +29,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     tabs.forEach(t => t.addEventListener("click", () => setTab(t.dataset.tab)));
 
-    // "Виж снимки" buttons (jump + switch tab)
     document.querySelectorAll("[data-open-gallery]").forEach(btn => {
         btn.addEventListener("click", () => {
             const key = btn.dataset.openGallery;
             setTab(key);
-            document.getElementById("gallery") ?.scrollIntoView({ behavior: "smooth", block: "start" });
+            document.getElementById("gallery") ? .scrollIntoView({ behavior: "smooth", block: "start" });
         });
     });
 
-    // Lightbox
     const lightbox = document.getElementById("lightbox");
     const lbImg = document.getElementById("lb-img");
     const lbCap = document.getElementById("lb-cap");
@@ -85,7 +80,6 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.style.overflow = "";
     }
 
-    // click on thumbnails (delegation)
     document.addEventListener("click", (e) => {
         const img = e.target.closest(".g-item");
         if (!img) return;
@@ -95,21 +89,17 @@ document.addEventListener("DOMContentLoaded", () => {
         if (i !== -1) openAt(i);
     });
 
-    // close (backdrop + X)
     lightbox ?.querySelectorAll("[data-close]").forEach(el => el.addEventListener("click", closeLb));
-
     prevBtn ?.addEventListener("click", () => idx !== -1 && openAt(idx - 1));
     nextBtn ?.addEventListener("click", () => idx !== -1 && openAt(idx + 1));
 
-    // keyboard
     document.addEventListener("keydown", (e) => {
-        if (!lightbox ? .classList.contains("open")) return;
+        if (!lightbox ?.classList.contains("open")) return;
         if (e.key === "Escape") closeLb();
         if (e.key === "ArrowLeft") openAt(idx - 1);
         if (e.key === "ArrowRight") openAt(idx + 1);
     });
 
-    // swipe (mobile)
     let startX = 0;
     lbImg ?.addEventListener("touchstart", (e) => { startX = e.touches[0].clientX; }, { passive: true });
     lbImg ?.addEventListener("touchend", (e) => {
