@@ -1,6 +1,5 @@
 :root {
     --bg: #f7f4ee;
-    --bg2: #ffffff;
     --soft: #f1eadf;
     --text: #16181c;
     --muted: #5b606a;
@@ -64,7 +63,7 @@ h1,
 h2,
 h3 {
     font-family: "Playfair Display", serif;
-    letter-spacing: .01em;
+    letter-spacing: .01em
 }
 
 h1 {
@@ -146,7 +145,7 @@ h3 {
 .nav {
     display: flex;
     gap: 18px;
-    align-items: center;
+    align-items: center
 }
 
 .nav a {
@@ -193,11 +192,11 @@ h3 {
     width: 18px;
     height: 2px;
     background: #1e2127;
-    margin: 4px auto;
+    margin: 4px auto
 }
 
 
-/* HERO */
+/* HERO (IMAGE) */
 
 .hero {
     position: relative;
@@ -211,7 +210,7 @@ h3 {
     inset: 0
 }
 
-.hero-video {
+.hero-img {
     width: 100%;
     height: 100%;
     object-fit: cover
@@ -220,7 +219,7 @@ h3 {
 .hero-scrim {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(255, 255, 255, .62) 0%, rgba(245, 236, 222, .92) 70%, rgba(241, 232, 219, .98) 100%);
+    background: linear-gradient(180deg, rgba(255, 255, 255, .58) 0%, rgba(245, 236, 222, .90) 70%, rgba(241, 232, 219, .98) 100%);
 }
 
 .hero-content {
@@ -252,7 +251,7 @@ h3 {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin: 0 0 22px;
+    margin: 0 0 22px
 }
 
 .hero-facts span {
@@ -288,7 +287,7 @@ h3 {
 }
 
 .btn:hover {
-    transform: translateY(-1px);
+    transform: translateY(-1px)
 }
 
 .btn-primary {
@@ -300,7 +299,7 @@ h3 {
 
 .btn-primary:hover {
     filter: brightness(1.03);
-    box-shadow: 0 24px 70px rgba(0, 0, 0, .22);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, .22)
 }
 
 .btn-ghost {
@@ -310,7 +309,7 @@ h3 {
 }
 
 .btn-ghost:hover {
-    box-shadow: 0 18px 52px rgba(0, 0, 0, .10);
+    box-shadow: 0 18px 52px rgba(0, 0, 0, .10)
 }
 
 .btn-secondary {
@@ -320,11 +319,11 @@ h3 {
 }
 
 .btn-secondary:hover {
-    border-color: rgba(184, 137, 61, .35);
+    border-color: rgba(184, 137, 61, .35)
 }
 
 
-/* Intro split */
+/* Split */
 
 .split {
     display: grid;
@@ -366,7 +365,7 @@ h3 {
 
 .villa-media {
     position: relative;
-    height: 280px;
+    height: 280px
 }
 
 .villa-media img {
@@ -531,7 +530,7 @@ h3 {
 
 .price-feature {
     border-color: rgba(184, 137, 61, .45);
-    box-shadow: var(--shadow2);
+    box-shadow: var(--shadow2)
 }
 
 .price-badge {
@@ -559,7 +558,7 @@ h3 {
 .amount {
     font-family: "Playfair Display", serif;
     font-size: 2rem;
-    color: var(--gold);
+    color: var(--gold)
 }
 
 .amount span {
@@ -573,20 +572,20 @@ h3 {
     list-style: none;
     margin: 16px 0 16px;
     display: grid;
-    gap: 10px;
+    gap: 10px
 }
 
 .checklist li {
     display: flex;
     gap: 10px;
     align-items: flex-start;
-    color: #3e434d;
+    color: #3e434d
 }
 
 .checklist li::before {
     content: "✓";
     color: var(--gold);
-    font-weight: 900;
+    font-weight: 900
 }
 
 .note {
@@ -636,7 +635,7 @@ h3 {
 .footer {
     border-top: 1px solid var(--line);
     background: rgba(255, 255, 255, .8);
-    padding: 18px 0;
+    padding: 18px 0
 }
 
 .footer-inner {
@@ -701,7 +700,7 @@ h3 {
     margin-top: 10px;
     color: rgba(255, 255, 255, .92);
     font-size: .95rem;
-    text-align: center;
+    text-align: center
 }
 
 .lb-close {
