@@ -1,112 +1,141 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const year = document.getElementById("year");
-    if (year) year.textContent = new Date().getFullYear();
+(function() {
+    function qs(sel, root) { return (root || document).querySelector(sel); }
 
-    const burger = document.getElementById("burger");
-    const nav = document.getElementById("nav");
-    if (burger && nav) {
-        burger.addEventListener("click", () => {
-            const open = nav.classList.toggle("open");
-            burger.setAttribute("aria-expanded", open ? "true" : "false");
+    function qsa(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // Footer year
+        var year = document.getElementById("year");
+        if (year) year.textContent = new Date().getFullYear();
+
+        // Mobile menu
+        var burger = document.getElementById("burger");
+        var nav = document.getElementById("nav");
+        if (burger && nav) {
+            burger.addEventListener("click", function() {
+                var isOpen = nav.classList.toggle("open");
+                burger.setAttribute("aria-expanded", isOpen ? "true" : "false");
+            });
+
+            qsa("#nav a").forEach(function(a) {
+                a.addEventListener("click", function() {
+                    nav.classList.remove("open");
+                    burger.setAttribute("aria-expanded", "false");
+                });
+            });
+        }
+
+        // Tabs
+        var tabs = qsa(".tab");
+        var panels = qsa(".panel");
+
+        function setTab(key) {
+            tabs.forEach(function(t) {
+                var active = t.getAttribute("data-tab") === key;
+                t.classList.toggle("active", active);
+                t.setAttribute("aria-selected", active ? "true" : "false");
+            });
+
+            panels.forEach(function(p) {
+                p.classList.toggle("active", p.getAttribute("data-panel") === key);
+            });
+        }
+
+        tabs.forEach(function(t) {
+            t.addEventListener("click", function() {
+                setTab(t.getAttribute("data-tab"));
+            });
         });
-        nav.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
-            nav.classList.remove("open");
-            burger.setAttribute("aria-expanded", "false");
-        }));
-    }
 
-    const tabs = Array.from(document.querySelectorAll(".tab"));
-    const panels = Array.from(document.querySelectorAll(".panel"));
+        // "Виж снимки" buttons (Вила 1 / Вила 2)
+        qsa("[data-open-gallery]").forEach(function(btn) {
+            btn.addEventListener("click", function() {
+                var key = btn.getAttribute("data-open-gallery");
+                setTab(key);
 
-    function setTab(key) {
-        tabs.forEach(t => {
-            const active = t.dataset.tab === key;
-            t.classList.toggle("active", active);
-            t.setAttribute("aria-selected", active ? "true" : "false");
+                var gallery = document.getElementById("gallery");
+                if (gallery) gallery.scrollIntoView({ behavior: "smooth", block: "start" });
+            });
         });
-        panels.forEach(p => p.classList.toggle("active", p.dataset.panel === key));
-    }
 
-    tabs.forEach(t => t.addEventListener("click", () => setTab(t.dataset.tab)));
+        // Lightbox
+        var lightbox = document.getElementById("lightbox");
+        var lbImg = document.getElementById("lb-img");
+        var lbCap = document.getElementById("lb-cap");
+        var prevBtn = qs(".lb-prev");
+        var nextBtn = qs(".lb-next");
 
-    document.querySelectorAll("[data-open-gallery]").forEach(btn => {
-        btn.addEventListener("click", () => {
-            const key = btn.dataset.openGallery;
-            setTab(key);
-            document.getElementById("gallery") ? .scrollIntoView({ behavior: "smooth", block: "start" });
+        var items = [];
+        var idx = -1;
+
+        function activeItems() {
+            var activePanel = qs(".panel.active");
+            if (!activePanel) return [];
+            return qsa(".g-item", activePanel);
+        }
+
+        function openAt(i) {
+            items = activeItems();
+            if (!items.length || !lightbox || !lbImg) return;
+
+            if (i < 0) i = items.length - 1;
+            if (i >= items.length) i = 0;
+
+            idx = i;
+            var el = items[idx];
+            var src = el.getAttribute("data-full") || el.getAttribute("src");
+
+            lbImg.setAttribute("src", src);
+            lbImg.setAttribute("alt", el.getAttribute("alt") || "Снимка");
+            if (lbCap) lbCap.textContent = el.getAttribute("alt") || "";
+
+            lightbox.classList.add("open");
+            lightbox.setAttribute("aria-hidden", "false");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeLb() {
+            if (!lightbox || !lbImg) return;
+            lightbox.classList.remove("open");
+            lightbox.setAttribute("aria-hidden", "true");
+            lbImg.setAttribute("src", "");
+            idx = -1;
+            document.body.style.overflow = "";
+        }
+
+        // Делегация: клик върху снимка
+        document.addEventListener("click", function(e) {
+            var target = e.target;
+
+            // close
+            if (target && target.hasAttribute && target.hasAttribute("data-close")) {
+                closeLb();
+                return;
+            }
+
+            // image click
+            var img = target && target.closest ? target.closest(".g-item") : null;
+            if (!img) return;
+
+            var list = activeItems();
+            var i = list.indexOf(img);
+            if (i !== -1) openAt(i);
         });
+
+        // Prev/Next
+        if (prevBtn) prevBtn.addEventListener("click", function() { if (idx !== -1) openAt(idx - 1); });
+        if (nextBtn) nextBtn.addEventListener("click", function() { if (idx !== -1) openAt(idx + 1); });
+
+        // Keyboard
+        document.addEventListener("keydown", function(e) {
+            if (!lightbox || !lightbox.classList.contains("open")) return;
+
+            if (e.key === "Escape") closeLb();
+            if (e.key === "ArrowLeft") openAt(idx - 1);
+            if (e.key === "ArrowRight") openAt(idx + 1);
+        });
+
+        // Default tab on load
+        if (tabs.length) setTab("villa1");
     });
-
-    const lightbox = document.getElementById("lightbox");
-    const lbImg = document.getElementById("lb-img");
-    const lbCap = document.getElementById("lb-cap");
-    const prevBtn = document.querySelector(".lb-prev");
-    const nextBtn = document.querySelector(".lb-next");
-
-    let items = [];
-    let idx = -1;
-
-    function activeItems() {
-        const activePanel = document.querySelector(".panel.active");
-        return activePanel ? Array.from(activePanel.querySelectorAll(".g-item")) : [];
-    }
-
-    function openAt(i) {
-        items = activeItems();
-        if (!items.length || !lightbox || !lbImg) return;
-
-        if (i < 0) i = items.length - 1;
-        if (i >= items.length) i = 0;
-
-        idx = i;
-        const el = items[idx];
-        const src = el.getAttribute("data-full") || el.src;
-
-        lbImg.src = src;
-        lbImg.alt = el.alt || "Снимка";
-        if (lbCap) lbCap.textContent = el.alt || "";
-
-        lightbox.classList.add("open");
-        lightbox.setAttribute("aria-hidden", "false");
-        document.body.style.overflow = "hidden";
-    }
-
-    function closeLb() {
-        if (!lightbox || !lbImg) return;
-        lightbox.classList.remove("open");
-        lightbox.setAttribute("aria-hidden", "true");
-        lbImg.src = "";
-        idx = -1;
-        document.body.style.overflow = "";
-    }
-
-    document.addEventListener("click", (e) => {
-        const img = e.target.closest(".g-item");
-        if (!img) return;
-
-        const list = activeItems();
-        const i = list.indexOf(img);
-        if (i !== -1) openAt(i);
-    });
-
-    lightbox ?.querySelectorAll("[data-close]").forEach(el => el.addEventListener("click", closeLb));
-    prevBtn ?.addEventListener("click", () => idx !== -1 && openAt(idx - 1));
-    nextBtn ?.addEventListener("click", () => idx !== -1 && openAt(idx + 1));
-
-    document.addEventListener("keydown", (e) => {
-        if (!lightbox ?.classList.contains("open")) return;
-        if (e.key === "Escape") closeLb();
-        if (e.key === "ArrowLeft") openAt(idx - 1);
-        if (e.key === "ArrowRight") openAt(idx + 1);
-    });
-
-    let startX = 0;
-    lbImg ?.addEventListener("touchstart", (e) => { startX = e.touches[0].clientX; }, { passive: true });
-    lbImg ?.addEventListener("touchend", (e) => {
-        const endX = e.changedTouches[0].clientX;
-        const diff = endX - startX;
-        if (Math.abs(diff) < 40) return;
-        if (diff > 0) openAt(idx - 1);
-        else openAt(idx + 1);
-    }, { passive: true });
-});
+})();
