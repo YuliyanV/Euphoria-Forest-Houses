@@ -3,141 +3,293 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Euphoria Forest Houses | Язовир Батак</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Euphoria Forest Houses – Язовир Батак</title>
+    <meta name="description" content="Луксозни вили на брега на язовир Батак. До 11 гости, 4 спални, 3 бани, веранда с гледка. Идеални за семейства и компании." />
 
-    <link rel="stylesheet" href="style.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- IMPORTANT: keep same-case filename -->
+    <link rel="stylesheet" href="./style.css" />
 </head>
 
 <body>
 
-    <!-- HEADER -->
-    <header class="header">
+    <header class="header" id="top">
         <div class="container header-inner">
-            <img src="images/logo.png" alt="Euphoria Forest Houses" class="logo">
-            <nav class="nav">
+            <a class="brand" href="#top" aria-label="Euphoria Forest Houses">
+                <!-- сменяш с твоя файл -->
+                <img class="brand-logo" src="./images/logo.png" alt="Euphoria Forest Houses">
+                <span class="brand-text">
+        <span class="brand-name">Euphoria Forest Houses</span>
+                <span class="brand-sub">Язовир Батак · Родопи</span>
+                </span>
+            </a>
+
+            <nav class="nav" id="nav">
                 <a href="#villas">Вили</a>
                 <a href="#gallery">Галерия</a>
-                <a href="#region">Регион</a>
+                <a href="#experience">Регион</a>
                 <a href="#pricing">Цени</a>
                 <a href="#contact">Контакт</a>
             </nav>
+
+            <button class="burger" id="burger" aria-label="Меню" aria-controls="nav" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
         </div>
     </header>
 
-    <!-- HERO -->
-    <section class="hero">
-        <video autoplay muted loop playsinline class="hero-video">
-    <source src="media/hero.mp4" type="video/mp4">
-  </video>
-        <div class="hero-overlay"></div>
+    <main>
 
-        <div class="hero-content container">
-            <h1>Euphoria Forest Houses</h1>
-            <p>Луксозни вили на самия бряг на язовир Батак</p>
-            <a href="#villas" class="btn-primary">Разгледай вилите</a>
-        </div>
-    </section>
+        <!-- HERO -->
+        <section class="hero" id="hero" aria-label="Hero">
+            <div class="hero-media">
+                <!-- Слагаш твоя mp4 slideshow -->
+                <video class="hero-video" autoplay muted loop playsinline poster="./images/hero-poster.jpg">
+        <source src="./media/hero.mp4" type="video/mp4">
+      </video>
+                <div class="hero-scrim"></div>
+            </div>
 
-    <!-- INTRO -->
-    <section class="intro container">
-        <p>
-            Това не е стандартна къща за гости. Това е място за тишина, простор и време с хората, които имат значение.
-        </p>
-    </section>
+            <div class="container hero-content">
+                <div class="hero-kicker">Луксозни вили на самия бряг</div>
+                <h1>Тишина, вода и Родопи.</h1>
+                <p class="hero-lead">
+                    Две самостоятелни вили с простор, уют и гледка към язовир Батак. Място за семейства и компании, които искат истински комфорт – без компромиси.
+                </p>
 
-    <!-- VILLAS -->
-    <section id="villas" class="villas container">
-        <h2>Две вили. Един стандарт.</h2>
+                <div class="hero-facts" aria-label="Ключови факти">
+                    <span>👥 До 11 гости</span>
+                    <span>🛏 4 спални</span>
+                    <span>🚿 3 бани</span>
+                    <span>🌿 Първа линия до водата</span>
+                </div>
 
-        <div class="villas-grid">
-            <div class="villa-card">
-                <img src="images/house_1/1.webp" alt="Вила 1">
-                <div class="villa-info">
-                    <h3>Вила 1</h3>
-                    <p>Просторен хол, веранда с гледка и уютна атмосфера.</p>
-                    <span>👥 до 11 гости · 🛏 4 спални · 🚿 3 бани</span>
-                    <button data-gallery="villa1">Виж снимки</button>
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="#villas">Разгледай вилите</a>
+                    <a class="btn btn-ghost" href="#contact">Обади се</a>
                 </div>
             </div>
+        </section>
 
-            <div class="villa-card">
-                <img src="images/house_2/14.webp" alt="Вила 2">
-                <div class="villa-info">
-                    <h3>Вила 2</h3>
-                    <p>Същият лукс, различно усещане.</p>
-                    <span>👥 до 11 гости · 🛏 4 спални · 🚿 3 бани</span>
-                    <button data-gallery="villa2">Виж снимки</button>
+        <!-- INTRO -->
+        <section class="section section-intro">
+            <div class="container split">
+                <div>
+                    <h2>Не е “къща за гости”. Това е преживяване.</h2>
+                    <p class="muted">
+                        Когато пристигнеш, първото нещо, което усещаш, е спокойствието. След това идват гледките към водата, чистият въздух и онзи комфорт, който те кара да забравиш телефона.
+                    </p>
+                    <p class="muted">
+                        Вилите са създадени за събирания – без да губиш личното си пространство. Сутрин – кафе на верандата. Вечер – разговори, тишина и звезди.
+                    </p>
+                </div>
+
+                <div class="card-media">
+                    <!-- сменяш снимката -->
+                    <img src="./images/banner_1.webp" alt="Euphoria Forest Houses – гледка">
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- GALLERY -->
-    <section id="gallery" class="gallery container">
-        <h2>Галерия</h2>
+        <!-- VILLAS -->
+        <section class="section" id="villas">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Две вили. Един стандарт.</h2>
+                    <p class="muted">Избери Вила 1 или Вила 2. И двете са на брега и са с еднакъв капацитет и удобства.</p>
+                </div>
 
-        <div class="gallery-tabs">
-            <button class="tab active" data-tab="villa1">Вила 1</button>
-            <button class="tab" data-tab="villa2">Вила 2</button>
-        </div>
+                <div class="villas-grid">
+                    <article class="villa">
+                        <div class="villa-media">
+                            <img src="./images/house_1/1.webp" alt="Вила 1">
+                            <span class="pill">Вила 1</span>
+                        </div>
+                        <div class="villa-body">
+                            <h3>Вила 1</h3>
+                            <p class="muted">По-топла, “класическа” атмосфера с акцент върху уюта и общото пространство.</p>
+                            <div class="meta">
+                                <span>👥 до 11</span><span>🛏 4</span><span>🚿 3</span>
+                            </div>
+                            <div class="actions">
+                                <button class="btn btn-secondary" data-open-gallery="villa1">Виж снимки</button>
+                            </div>
+                        </div>
+                    </article>
 
-        <div class="gallery-grid active" data-gallery="villa1">
-            <img src="images/house_1/1.webp">
-            <img src="images/house_1/2.webp">
-            <img src="images/house_1/3.webp">
-        </div>
-
-        <div class="gallery-grid" data-gallery="villa2">
-            <img src="images/house_2/14.webp">
-            <img src="images/house_2/15.webp">
-            <img src="images/house_2/16.webp">
-        </div>
-    </section>
-
-    <!-- REGION -->
-    <section id="region" class="region">
-        <div class="container">
-            <h2>Язовир Батак & Родопите</h2>
-            <p>
-                Районът предлага разходки, риболов, каяк, зимни уикенди с камина и едно от най-спокойните места в България.
-            </p>
-        </div>
-    </section>
-
-    <!-- PRICING -->
-    <section id="pricing" class="pricing container">
-        <h2>Вашият престой</h2>
-
-        <div class="pricing-grid">
-            <div class="price-card">
-                <h3>Стандартен престой</h3>
-                <strong>400 € / нощ</strong>
-                <p>Минимум 2 нощувки · цялата вила</p>
+                    <article class="villa">
+                        <div class="villa-media">
+                            <img src="./images/house_2/14.webp" alt="Вила 2">
+                            <span class="pill">Вила 2</span>
+                        </div>
+                        <div class="villa-body">
+                            <h3>Вила 2</h3>
+                            <p class="muted">Същият лукс и комфорт, различно усещане и детайли в интериора.</p>
+                            <div class="meta">
+                                <span>👥 до 11</span><span>🛏 4</span><span>🚿 3</span>
+                            </div>
+                            <div class="actions">
+                                <button class="btn btn-secondary" data-open-gallery="villa2">Виж снимки</button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
             </div>
+        </section>
 
-            <div class="price-card highlight">
-                <h3>Празничен пакет</h3>
-                <strong>600 € / нощ</strong>
-                <p>Коледа · специални дати</p>
+        <!-- GALLERY -->
+        <section class="section section-soft" id="gallery">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Галерия</h2>
+                    <p class="muted">Избери вила и разгледай интериора и гледките.</p>
+                </div>
+
+                <div class="tabs" role="tablist" aria-label="Галерия по вили">
+                    <button class="tab active" type="button" role="tab" aria-selected="true" data-tab="villa1">Вила 1</button>
+                    <button class="tab" type="button" role="tab" aria-selected="false" data-tab="villa2">Вила 2</button>
+                </div>
+
+                <!-- PANEL: Villa 1 -->
+                <div class="panel active" data-panel="villa1">
+                    <div class="gallery-grid">
+                        <!-- СМЕНЯШ/ДОБАВЯШ СНИМКИ -->
+                        <img class="g-item" src="./images/house_1/1.webp" data-full="./images/house_1/1.webp" alt="Вила 1">
+                        <img class="g-item" src="./images/house_1/2.webp" data-full="./images/house_1/2.webp" alt="Вила 1">
+                        <img class="g-item" src="./images/house_1/3.webp" data-full="./images/house_1/3.webp" alt="Вила 1">
+                        <img class="g-item" src="./images/banner_2.webp" data-full="./images/banner_2.webp" alt="Гледка">
+                        <img class="g-item" src="./images/banner_3.webp" data-full="./images/banner_3.webp" alt="Гледка">
+                        <img class="g-item" src="./images/banner_1.webp" data-full="./images/banner_1.webp" alt="Гледка">
+                    </div>
+                </div>
+
+                <!-- PANEL: Villa 2 -->
+                <div class="panel" data-panel="villa2">
+                    <div class="gallery-grid">
+                        <img class="g-item" src="./images/house_2/14.webp" data-full="./images/house_2/14.webp" alt="Вила 2">
+                        <img class="g-item" src="./images/house_2/15.webp" data-full="./images/house_2/15.webp" alt="Вила 2">
+                        <img class="g-item" src="./images/house_2/16.webp" data-full="./images/house_2/16.webp" alt="Вила 2">
+                        <img class="g-item" src="./images/house_2/17.webp" data-full="./images/house_2/17.webp" alt="Вила 2">
+                        <img class="g-item" src="./images/house_2/18.webp" data-full="./images/house_2/18.webp" alt="Вила 2">
+                        <img class="g-item" src="./images/house_2/19.webp" data-full="./images/house_2/19.webp" alt="Вила 2">
+                    </div>
+                </div>
+
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- CONTACT -->
-    <section id="contact" class="contact">
-        <h2>Свържи се с нас</h2>
-        <a href="tel:+359877200704">0877 200 704</a>
-    </section>
+        <!-- EXPERIENCE / REGION -->
+        <section class="section" id="experience">
+            <div class="container split">
+                <div>
+                    <h2>Язовир Батак & Родопите – причината да дойдеш.</h2>
+                    <p class="muted">
+                        Това е едно от онези места, където денят започва бавно. Кафе на верандата, гладка вода, чист въздух и тишина. През деня можеш да се разходиш в гората, да направиш пикник, да хвърлиш въдица или просто да си позволиш “нищо”.
+                    </p>
+
+                    <ul class="bullets">
+                        <li><strong>Разходки и леки преходи</strong> – гори, панорами, чисти пътеки.</li>
+                        <li><strong>Риболов и пикник</strong> край водата.</li>
+                        <li><strong>Каяк / SUP</strong> (ако носите екипировка) и снимки по залез.</li>
+                        <li><strong>Зимни уикенди</strong> – уют, тишина и “рестарт” далеч от града.</li>
+                        <li><strong>Вечери на верандата</strong> – барбекю, разговори, спокойствие.</li>
+                    </ul>
+                </div>
+
+                <div class="card-media">
+                    <img src="./images/banner_2.webp" alt="Родопи и язовир Батак">
+                </div>
+            </div>
+        </section>
+
+        <!-- PRICING -->
+        <section class="section section-soft" id="pricing">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Цени и условия</h2>
+                    <p class="muted">
+                        Цените са за <strong>цялата вила</strong> (капацитет до <strong>11 гости</strong>). За свободни дати – звънни и ще потвърдим веднага.
+                    </p>
+                </div>
+
+                <div class="pricing-grid">
+                    <article class="price">
+                        <div class="price-top">
+                            <h3>Стандартен престой</h3>
+                            <div class="amount">400 € <span>/ нощ</span></div>
+                        </div>
+                        <ul class="checklist">
+                            <li>Минимум: <strong>2 нощувки</strong></li>
+                            <li>Цяла вила – без доплащане на човек</li>
+                            <li>Капацитет до <strong>11 гости</strong></li>
+                        </ul>
+                        <a class="btn btn-primary w100" href="#contact">Провери свободни дати</a>
+                    </article>
+
+                    <article class="price price-feature">
+                        <div class="price-badge">Празнично</div>
+                        <div class="price-top">
+                            <h3>Коледен пакет</h3>
+                            <div class="amount">600 € <span>/ нощ</span></div>
+                        </div>
+                        <ul class="checklist">
+                            <li>Минимум: <strong>3 нощувки</strong></li>
+                            <li>Идеално за семейства и компании</li>
+                            <li>Топ локация + топ комфорт</li>
+                        </ul>
+                        <a class="btn btn-primary w100" href="#contact">Резервирай по телефон</a>
+                        <p class="note">* Ако имаш други дати/повод – казваш и ти даваме оферта.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section class="section" id="contact">
+            <div class="container contact">
+                <div class="contact-card">
+                    <h2>Контакт</h2>
+                    <p class="muted">Най-бързият начин: обаждане. Казваш дати и коя вила искаш.</p>
+
+                    <div class="contact-actions">
+                        <a class="btn btn-primary" href="tel:+359877200704">0877 200 704</a>
+                        <a class="btn btn-ghost" href="#gallery">Виж снимки</a>
+                    </div>
+
+                    <div class="contact-meta">
+                        <span>📍 Язовир Батак, Родопи</span>
+                        <span>🕒 Отговор: веднага по телефона</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-inner">
+            <span>© <span id="year"></span> Euphoria Forest Houses</span>
+            <a class="to-top" href="#top">Нагоре ↑</a>
+        </div>
+    </footer>
 
     <!-- LIGHTBOX -->
-    <div class="lightbox">
-        <span class="close">×</span>
-        <img class="lightbox-img">
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+        <div class="lb-backdrop" data-close></div>
+        <div class="lb-card" role="dialog" aria-modal="true" aria-label="Преглед на снимка">
+            <button class="lb-close" type="button" aria-label="Затвори" data-close>×</button>
+            <button class="lb-arrow lb-prev" type="button" aria-label="Предишна снимка">‹</button>
+            <img id="lb-img" alt="">
+            <button class="lb-arrow lb-next" type="button" aria-label="Следваща снимка">›</button>
+            <div class="lb-cap" id="lb-cap"></div>
+        </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="./script.js"></script>
 </body>
 
 </html>
