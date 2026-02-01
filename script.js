@@ -11,6 +11,7 @@
         // Mobile menu
         var burger = document.getElementById("burger");
         var nav = document.getElementById("nav");
+
         if (burger && nav) {
             burger.addEventListener("click", function() {
                 var isOpen = nav.classList.toggle("open");
@@ -103,17 +104,14 @@
             document.body.style.overflow = "";
         }
 
-        // Делегация: клик върху снимка
         document.addEventListener("click", function(e) {
             var target = e.target;
 
-            // close
             if (target && target.hasAttribute && target.hasAttribute("data-close")) {
                 closeLb();
                 return;
             }
 
-            // image click
             var img = target && target.closest ? target.closest(".g-item") : null;
             if (!img) return;
 
@@ -122,11 +120,9 @@
             if (i !== -1) openAt(i);
         });
 
-        // Prev/Next
         if (prevBtn) prevBtn.addEventListener("click", function() { if (idx !== -1) openAt(idx - 1); });
         if (nextBtn) nextBtn.addEventListener("click", function() { if (idx !== -1) openAt(idx + 1); });
 
-        // Keyboard
         document.addEventListener("keydown", function(e) {
             if (!lightbox || !lightbox.classList.contains("open")) return;
 
@@ -135,7 +131,7 @@
             if (e.key === "ArrowRight") openAt(idx + 1);
         });
 
-        // Default tab on load
+        // Default tab
         if (tabs.length) setTab("villa1");
     });
 })();
