@@ -356,17 +356,29 @@ h3 {
 }
 
 .hero-facts {
-    display: flex;
-    flex-wrap: wrap;
     gap: 10px;
-    margin: 0 0 24px;
+    margin: 10px 0 34px;
+    /* повече въздух преди CTA */
 }
 
 .hero-facts span {
-    background: rgba(255, 255, 255, .06);
-    border: 1px solid rgba(255, 255, 255, .14);
-    color: rgba(255, 255, 255, .85);
-    backdrop-filter: blur(6px);
+    padding: 8px 12px;
+    /* по-малки */
+    border-radius: 14px;
+    /* НЕ pill (различни от бутоните) */
+    font-size: .90rem;
+    font-weight: 650;
+    background: rgba(255, 255, 255, .04);
+    border: 1px solid rgba(255, 255, 255, .10);
+    box-shadow: none;
+    /* махаме “бутонната” сянка */
+    backdrop-filter: blur(8px);
+}
+
+.hero-facts span:hover {
+    transform: none;
+    /* да не се държат като бутони */
+    border-color: rgba(200, 164, 93, .20);
 }
 
 .hero-actions {
