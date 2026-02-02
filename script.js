@@ -11,17 +11,20 @@
         // Mobile menu
         var burger = document.getElementById("burger");
         var nav = document.getElementById("nav");
-
         if (burger && nav) {
             burger.addEventListener("click", function() {
                 var isOpen = nav.classList.toggle("open");
+                burger.classList.toggle("is-open", isOpen);
                 burger.setAttribute("aria-expanded", isOpen ? "true" : "false");
             });
+
 
             qsa("#nav a").forEach(function(a) {
                 a.addEventListener("click", function() {
                     nav.classList.remove("open");
+                    burger.classList.remove("is-open");
                     burger.setAttribute("aria-expanded", "false");
+
                 });
             });
         }
@@ -48,7 +51,7 @@
             });
         });
 
-        // "Виж снимки" buttons (Вила 1 / Вила 2)
+        // "Виж снимки" buttons
         qsa("[data-open-gallery]").forEach(function(btn) {
             btn.addEventListener("click", function() {
                 var key = btn.getAttribute("data-open-gallery");
@@ -107,11 +110,13 @@
         document.addEventListener("click", function(e) {
             var target = e.target;
 
+            // close
             if (target && target.hasAttribute && target.hasAttribute("data-close")) {
                 closeLb();
                 return;
             }
 
+            // image click
             var img = target && target.closest ? target.closest(".g-item") : null;
             if (!img) return;
 
